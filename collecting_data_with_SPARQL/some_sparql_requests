@@ -64,3 +64,24 @@ WHERE{
  #->1254 results 
 
 
+#list of gay people
+SELECT DISTINCT ?item ?itemLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?item WHERE {
+      ?item p:P91 ?statement0.
+      ?statement0 (ps:P91/(wdt:P279*)) wd:Q592.
+    }
+  }
+}
+#-> 475 results
+
+# graph with gay men, distance one 
+CONSTRUCT {
+   ?gayman ?pred ?object.
+} WHERE {
+     ?gayman ?pred ?object.
+      ?gayman p:P91 ?statement0.
+      ?statement0 (ps:P91/(wdt:P279*)) wd:Q592.
+}
+#-> 58443 results
