@@ -1,0 +1,66 @@
+# obtenir la liste des bars 
+
+SELECT ?bar
+WHERE 
+{
+  ?bar wdt:P31 wd:Q105321449.
+}
+LIMIT 100
+
+# construire un graphe avec la localisation des bars
+CONSTRUCT 
+{
+  ?bar wdt:P31 wd:Q105321449.
+  ?bar wdt:P17 ?country.
+  ?bar wdt:P113 ?adminentity.
+}
+WHERE 
+{
+  ?bar wdt:P31 wd:Q105321449.
+  ?bar wdt:P17 ?country.
+  ?bar wdt:P131 ?adminentity.
+}
+
+#-> resultat dans bars_with_location.csv
+
+# elements facet_of LGBT culture 
+SELECT ?item
+WHERE {
+  ?item wdt:P1269 wd:Q17884.
+}
+
+
+# element instance of a facet of LGBT culture 
+SELECT ?item
+WHERE {
+  ?item wdt:P31 ?lgbt.
+  ?lgbt wdt:P1269 wd:Q17884.
+}
+
+# getting to the people
+SELECT ?person ?item
+WHERE {
+  ?person wdt:P463 ?item.
+  ?item wdt:P31 ?lgbt.
+  ?lgbt wdt:P1269 wd:Q17884.
+}
+
+# everything that has a direct link to david bowie
+CONSTRUCT {
+  ?subj ?pred wd:Q5383.
+ }
+WHERE{
+  ?subj ?pred wd:Q5383.
+ }
+#->2354 results 
+
+# same but in the other direction
+CONSTRUCT {
+  wd:Q5383 ?pred ?obj.
+ }
+WHERE{
+  wd:Q5383 ?pred ?obj.
+ }
+ #->1254 results 
+
+

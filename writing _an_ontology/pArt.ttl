@@ -1,0 +1,363 @@
+@prefix : <http://www.semanticweb.org/flora/ontologies/2022/10/pArt#> .
+@prefix db: <http://dbpedia.org/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dbo: <https://dbpedia.org/ontology/> .
+@prefix dbr: <ttp://dbpedia.org/resource/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix pArt: <http://www.semanticweb.org/flora/ontologies/2022/10/pArt#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/flora/ontologies/2022/10/pArt> .
+
+<http://www.semanticweb.org/flora/ontologies/2022/10/pArt> rdf:type owl:Ontology ;
+                                                            owl:imports <https://www.geonames.org/ontology> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_079a39aa_4862_45f0_bcd7_84d9ad03f28d
+pArt:OWLObjectProperty_079a39aa_4862_45f0_bcd7_84d9ad03f28d rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_079a39aa_4862_45f0_bcd7_84d9ad03f28d ,
+                                                                               pArt:OWLObjectProperty_5ff2dbda_1daf_4efc_b6ba_9cbf2cf4f48f ;
+                                                            rdfs:domain foaf:Person ;
+                                                            rdfs:label "pArt:person_identity"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_1d5cb1cc_39a5_4d77_82d8_2db88b44ed32
+pArt:OWLObjectProperty_1d5cb1cc_39a5_4d77_82d8_2db88b44ed32 rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_9a6df980_0020_4161_a2cb_6c18f7134524 ;
+                                                            rdfs:label "pArt:collaborator"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_1ff155d5_2fca_4863_8792_57fee82c4645
+pArt:OWLObjectProperty_1ff155d5_2fca_4863_8792_57fee82c4645 rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_5ff2dbda_1daf_4efc_b6ba_9cbf2cf4f48f ;
+                                                            owl:inverseOf pArt:OWLObjectProperty_97a3ee0c_3133_4481_97ce_58a5c00ec8c7 ;
+                                                            rdfs:domain pArt:OWLClass_75e75bb0_a086_40ad_bc73_7739dc47c127 ,
+                                                                        pArt:OWLClass_e12f3268_4bf5_45dd_a400_842637ff1ff4 ;
+                                                            rdfs:range owl:Thing ;
+                                                            rdfs:label "pArt:reason_of_being"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_355b1942_d388_4179_a6e9_9ee82029072f
+pArt:OWLObjectProperty_355b1942_d388_4179_a6e9_9ee82029072f rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf owl:topObjectProperty ;
+                                                            rdfs:label "pArt:relational_property"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_5ff2dbda_1daf_4efc_b6ba_9cbf2cf4f48f
+pArt:OWLObjectProperty_5ff2dbda_1daf_4efc_b6ba_9cbf2cf4f48f rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf owl:topObjectProperty ;
+                                                            rdfs:label "pArt:modifier_property"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_891084ad_886e_4d57_8b93_2e8984716ade
+pArt:OWLObjectProperty_891084ad_886e_4d57_8b93_2e8984716ade rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_079a39aa_4862_45f0_bcd7_84d9ad03f28d ;
+                                                            rdfs:domain foaf:Person ;
+                                                            rdfs:range pArt:OWLClass_2c452038_f4b2_4444_9ee3_6d187d7c6ee3 ;
+                                                            rdfs:label "pArt:trans_gender"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_97a3ee0c_3133_4481_97ce_58a5c00ec8c7
+pArt:OWLObjectProperty_97a3ee0c_3133_4481_97ce_58a5c00ec8c7 rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_5ff2dbda_1daf_4efc_b6ba_9cbf2cf4f48f ;
+                                                            rdfs:label "pArt:reason_why"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_9a6df980_0020_4161_a2cb_6c18f7134524
+pArt:OWLObjectProperty_9a6df980_0020_4161_a2cb_6c18f7134524 rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_5ff2dbda_1daf_4efc_b6ba_9cbf2cf4f48f ;
+                                                            rdf:type owl:TransitiveProperty ,
+                                                                     owl:ReflexiveProperty ;
+                                                            rdfs:domain pArt:OWLClass_75e75bb0_a086_40ad_bc73_7739dc47c127 ,
+                                                                        foaf:Person ;
+                                                            rdfs:range pArt:OWLClass_e12f3268_4bf5_45dd_a400_842637ff1ff4 ;
+                                                            rdfs:label "pArt:participates_in"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_a535368d_14b7_4219_a078_21ee100062bf
+pArt:OWLObjectProperty_a535368d_14b7_4219_a078_21ee100062bf rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_b669f4f3_8b64_4023_9a02_4cf0048bffd9 ;
+                                                            rdfs:domain pArt:OWLClass_afa02f93_04f2_42b2_b9db_c4fb7281aa67 ;
+                                                            rdfs:range [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty owl:topDataProperty ;
+                                                                         owl:someValuesFrom xsd:dateTime
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty owl:topDataProperty ;
+                                                                         owl:someValuesFrom xsd:dateTimeStamp
+                                                                       ] ;
+                                                            rdfs:label "pArt:date"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_adc56929_6766_46c1_8ee0_86ce8afcc405
+pArt:OWLObjectProperty_adc56929_6766_46c1_8ee0_86ce8afcc405 rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_079a39aa_4862_45f0_bcd7_84d9ad03f28d ;
+                                                            rdfs:domain foaf:Person ;
+                                                            rdfs:range pArt:OWLClass_2c452038_f4b2_4444_9ee3_6d187d7c6ee3 ;
+                                                            rdfs:label "pArt:has_gender"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_b669f4f3_8b64_4023_9a02_4cf0048bffd9
+pArt:OWLObjectProperty_b669f4f3_8b64_4023_9a02_4cf0048bffd9 rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_5ff2dbda_1daf_4efc_b6ba_9cbf2cf4f48f ;
+                                                            rdfs:label "pArt:localisation"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_c0aceab3_db0a_483a_8a21_b8df946d36be
+pArt:OWLObjectProperty_c0aceab3_db0a_483a_8a21_b8df946d36be rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_9a6df980_0020_4161_a2cb_6c18f7134524 ;
+                                                            rdfs:label "pArt:initiator"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLObjectProperty_f75db9ec_acda_4bd6_a663_3224816c30fa
+pArt:OWLObjectProperty_f75db9ec_acda_4bd6_a663_3224816c30fa rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf pArt:OWLObjectProperty_9a6df980_0020_4161_a2cb_6c18f7134524 ;
+                                                            rdfs:label "pArt:creator"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#knows
+pArt:knows rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf pArt:OWLObjectProperty_355b1942_d388_4179_a6e9_9ee82029072f ;
+           rdfs:domain foaf:Person ;
+           rdfs:range foaf:Person .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_294ead44_3fab_4e6c_8666_f19c5c44d52c
+pArt:OWLClass_294ead44_3fab_4e6c_8666_f19c5c44d52c rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_afa02f93_04f2_42b2_b9db_c4fb7281aa67 ;
+                                                   rdfs:label "pArt:concert"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_2c452038_f4b2_4444_9ee3_6d187d7c6ee3
+pArt:OWLClass_2c452038_f4b2_4444_9ee3_6d187d7c6ee3 rdf:type owl:Class ;
+                                                   rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                   rdfs:label "pArt:gender"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_3bb88ee5_9f8e_4436_875a_c950732d4f00
+pArt:OWLClass_3bb88ee5_9f8e_4436_875a_c950732d4f00 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_2c452038_f4b2_4444_9ee3_6d187d7c6ee3 ;
+                                                   rdfs:label "pArt:female"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_3d8f54d2_3cae_4271_979d_0effc356eaa2
+pArt:OWLClass_3d8f54d2_3cae_4271_979d_0effc356eaa2 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_b49caf45_fc63_4099_a7ab_6d7728d4e6b8 ;
+                                                   rdfs:label "pArt:newspaper"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_45750857_b5b9_49ab_8fcc_596a17963a46
+pArt:OWLClass_45750857_b5b9_49ab_8fcc_596a17963a46 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_2c452038_f4b2_4444_9ee3_6d187d7c6ee3 ;
+                                                   rdfs:label "pArt:trans"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_4f7ac013_6154_457e_a78b_cad08528d89a
+pArt:OWLClass_4f7ac013_6154_457e_a78b_cad08528d89a rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_b49caf45_fc63_4099_a7ab_6d7728d4e6b8 ;
+                                                   rdfs:label "pArt:radio"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_5987a11e_ab17_41d5_8cbc_35697104d540
+pArt:OWLClass_5987a11e_ab17_41d5_8cbc_35697104d540 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_8cd7f7c2_0859_4576_8c74_1b2bb9e1b472 ;
+                                                   rdfs:label "pArt:museum"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_75e75bb0_a086_40ad_bc73_7739dc47c127
+pArt:OWLClass_75e75bb0_a086_40ad_bc73_7739dc47c127 rdf:type owl:Class ;
+                                                   owl:equivalentClass foaf:Organization ;
+                                                   rdfs:label "pArt:organization"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_766a63ed_31ff_4521_be42_0bb7c74bc643
+pArt:OWLClass_766a63ed_31ff_4521_be42_0bb7c74bc643 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_afa02f93_04f2_42b2_b9db_c4fb7281aa67 ;
+                                                   rdfs:label "pArt:exhibit"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_76f6b498_b7ee_437a_8eab_76b03fb88fbb
+pArt:OWLClass_76f6b498_b7ee_437a_8eab_76b03fb88fbb rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_783e2648_1ff7_40a1_b60a_de03c2a122be ;
+                                                   rdfs:label "pArt:film"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_783e2648_1ff7_40a1_b60a_de03c2a122be
+pArt:OWLClass_783e2648_1ff7_40a1_b60a_de03c2a122be rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_e12f3268_4bf5_45dd_a400_842637ff1ff4 ;
+                                                   rdfs:label "pArt:pieceOfArt"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_832aae13_4a21_4288_880d_82c5c8c40136
+pArt:OWLClass_832aae13_4a21_4288_880d_82c5c8c40136 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_2c452038_f4b2_4444_9ee3_6d187d7c6ee3 ;
+                                                   rdfs:label "pArt:non_binary"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_87c75212_6627_4076_84c1_6306dc5b7d09
+pArt:OWLClass_87c75212_6627_4076_84c1_6306dc5b7d09 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_2c452038_f4b2_4444_9ee3_6d187d7c6ee3 ;
+                                                   rdfs:label "pArt:male"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_8cd7f7c2_0859_4576_8c74_1b2bb9e1b472
+pArt:OWLClass_8cd7f7c2_0859_4576_8c74_1b2bb9e1b472 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_75e75bb0_a086_40ad_bc73_7739dc47c127 ;
+                                                   rdfs:label "pArt:venue"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_a0213508_e608_4a2e_a5aa_4e485414db95
+pArt:OWLClass_a0213508_e608_4a2e_a5aa_4e485414db95 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_afa02f93_04f2_42b2_b9db_c4fb7281aa67 ;
+                                                   rdfs:label "pArt:conference"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_a04b79b7_49aa_4b69_a2f4_410a8373e83c
+pArt:OWLClass_a04b79b7_49aa_4b69_a2f4_410a8373e83c rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_8cd7f7c2_0859_4576_8c74_1b2bb9e1b472 ;
+                                                   rdfs:label "pArt:theater"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_a7ae23dd_af17_4fc0_8650_474ab58e7599
+pArt:OWLClass_a7ae23dd_af17_4fc0_8650_474ab58e7599 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_783e2648_1ff7_40a1_b60a_de03c2a122be ;
+                                                   rdfs:label "pArt:dragshow"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_a809042f_2b8d_400f_8ea9_8e2dfc6f0212
+pArt:OWLClass_a809042f_2b8d_400f_8ea9_8e2dfc6f0212 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_783e2648_1ff7_40a1_b60a_de03c2a122be ;
+                                                   rdfs:label "pArt:fanzine"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_a9fd0bd8_e45d_4006_8545_d0a4b852c234
+pArt:OWLClass_a9fd0bd8_e45d_4006_8545_d0a4b852c234 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_b49caf45_fc63_4099_a7ab_6d7728d4e6b8 ;
+                                                   rdfs:label "pArt:television"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_afa02f93_04f2_42b2_b9db_c4fb7281aa67
+pArt:OWLClass_afa02f93_04f2_42b2_b9db_c4fb7281aa67 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_e12f3268_4bf5_45dd_a400_842637ff1ff4 ;
+                                                   rdfs:label "pArt:event"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_b49caf45_fc63_4099_a7ab_6d7728d4e6b8
+pArt:OWLClass_b49caf45_fc63_4099_a7ab_6d7728d4e6b8 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_75e75bb0_a086_40ad_bc73_7739dc47c127 ;
+                                                   rdfs:label "pArt:media"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_c2d19766_ef44_4180_b579_7a1a0c3db5d2
+pArt:OWLClass_c2d19766_ef44_4180_b579_7a1a0c3db5d2 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_e12f3268_4bf5_45dd_a400_842637ff1ff4 ;
+                                                   rdfs:label "pArt:collaboration"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_ce814cd4_19b7_473a_b925_c1dfd4e64cf1
+pArt:OWLClass_ce814cd4_19b7_473a_b925_c1dfd4e64cf1 rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_8cd7f7c2_0859_4576_8c74_1b2bb9e1b472 ;
+                                                   rdfs:label "pArt:club"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_db59a2ab_b2c1_46c8_bec1_a4f5e06aca7a
+pArt:OWLClass_db59a2ab_b2c1_46c8_bec1_a4f5e06aca7a rdf:type owl:Class ;
+                                                   rdfs:subClassOf pArt:OWLClass_75e75bb0_a086_40ad_bc73_7739dc47c127 ;
+                                                   rdfs:label "pArt:nonprofit"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_e12f3268_4bf5_45dd_a400_842637ff1ff4
+pArt:OWLClass_e12f3268_4bf5_45dd_a400_842637ff1ff4 rdf:type owl:Class ;
+                                                   rdfs:label "pArt:production"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLClass_fd17162e_3728_4e16_9c36_94867317591e
+pArt:OWLClass_fd17162e_3728_4e16_9c36_94867317591e rdf:type owl:Class ;
+                                                   rdfs:subClassOf foaf:Person ;
+                                                   rdfs:label "pArt:avatar"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#song
+pArt:song rdf:type owl:Class ;
+          rdfs:subClassOf pArt:OWLClass_783e2648_1ff7_40a1_b60a_de03c2a122be .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLNamedIndividual_094fda21_f55a_463a_b377_15a3d7b9d69a
+pArt:OWLNamedIndividual_094fda21_f55a_463a_b377_15a3d7b9d69a rdf:type owl:NamedIndividual ,
+                                                                      foaf:Person ;
+                                                             pArt:knows pArt:OWLNamedIndividual_1caffef2_256f_4539_89c6_dcc553babc75 ;
+                                                             rdfs:label "David Bowie"@en .
+
+
+###  http://www.semanticweb.org/flora/ontologies/2022/10/pArt#OWLNamedIndividual_1caffef2_256f_4539_89c6_dcc553babc75
+pArt:OWLNamedIndividual_1caffef2_256f_4539_89c6_dcc553babc75 rdf:type owl:NamedIndividual ,
+                                                                      foaf:Person ;
+                                                             rdfs:label "Freddie Mercury"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( pArt:OWLClass_294ead44_3fab_4e6c_8666_f19c5c44d52c
+                pArt:OWLClass_766a63ed_31ff_4521_be42_0bb7c74bc643
+                pArt:OWLClass_a0213508_e608_4a2e_a5aa_4e485414db95
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( pArt:OWLClass_3bb88ee5_9f8e_4436_875a_c950732d4f00
+                pArt:OWLClass_45750857_b5b9_49ab_8fcc_596a17963a46
+                pArt:OWLClass_832aae13_4a21_4288_880d_82c5c8c40136
+                pArt:OWLClass_87c75212_6627_4076_84c1_6306dc5b7d09
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( pArt:OWLClass_3d8f54d2_3cae_4271_979d_0effc356eaa2
+                pArt:OWLClass_4f7ac013_6154_457e_a78b_cad08528d89a
+                pArt:OWLClass_a9fd0bd8_e45d_4006_8545_d0a4b852c234
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( pArt:OWLClass_5987a11e_ab17_41d5_8cbc_35697104d540
+                pArt:OWLClass_a04b79b7_49aa_4b69_a2f4_410a8373e83c
+                pArt:OWLClass_ce814cd4_19b7_473a_b925_c1dfd4e64cf1
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( pArt:OWLClass_8cd7f7c2_0859_4576_8c74_1b2bb9e1b472
+                pArt:OWLClass_b49caf45_fc63_4099_a7ab_6d7728d4e6b8
+                pArt:OWLClass_db59a2ab_b2c1_46c8_bec1_a4f5e06aca7a
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
