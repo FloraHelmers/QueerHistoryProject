@@ -84,3 +84,24 @@ def create_plot_graph_force_directed(G):
     force_graph = graphplot(forcedirected, connect_edges(forcedirected,edges), "Force-directed") 
 
     return force_graph
+
+def create_plot_graph_force_directed_bundled(G):
+    # convert the graph labels to integers
+    g=convert_to_int_labels(nx.DiGraph(G))
+
+    # create a dataframe of nodes with a 'name' column
+    nodes = pd.DataFrame([str(i) for i in g.nodes], columns=['name'])
+    # create a list of edges
+    ledge=[]
+    for u,v in g.edges:
+        ledge.append([u,v])
+    # create a dataframe of edges with 'source' and 'target' columns
+    edges = pd.DataFrame(ledge,columns=['source', 'target'])
+
+    # create a force-directed layout of the graph
+    forcedirected = forceatlas2_layout(nodes, edges)
+
+    # plot the force-directed graph
+    force_graph = graphplot(forcedirected, hammer_bundle(forcedirected,edges), "Force-directed, bundled") 
+
+    return force_graph
