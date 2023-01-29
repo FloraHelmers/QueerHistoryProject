@@ -116,7 +116,6 @@ def prune_literals(G):
         if not ("http" in node):
             # If they are a not a link, add the node to the list of nodes to be removed
             to_suppr.append(node)
-            break
 
     # Iterate through the list of nodes to be removed
     for node in to_suppr:
