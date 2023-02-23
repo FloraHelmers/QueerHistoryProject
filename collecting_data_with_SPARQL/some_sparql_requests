@@ -1,0 +1,286 @@
+# obtenir la liste des bars 
+
+SELECT ?bar
+WHERE 
+{
+  ?bar wdt:P31 wd:Q105321449.
+}
+LIMIT 100
+
+# construire un graphe avec la localisation des bars
+CONSTRUCT 
+{
+  ?bar wdt:P31 wd:Q105321449.
+  ?bar wdt:P17 ?country.
+  ?bar wdt:P113 ?adminentity.
+}
+WHERE 
+{
+  ?bar wdt:P31 wd:Q105321449.
+  ?bar wdt:P17 ?country.
+  ?bar wdt:P131 ?adminentity.
+}
+
+#-> resultat dans bars_with_location.csv
+
+# elements facet_of LGBT culture 
+SELECT ?item
+WHERE {
+  ?item wdt:P1269 wd:Q17884.
+}
+
+
+# element instance of a facet of LGBT culture 
+SELECT ?item
+WHERE {
+  ?item wdt:P31 ?lgbt.
+  ?lgbt wdt:P1269 wd:Q17884.
+}
+
+# getting to the people
+SELECT ?person ?item
+WHERE {
+  ?person wdt:P463 ?item.
+  ?item wdt:P31 ?lgbt.
+  ?lgbt wdt:P1269 wd:Q17884.
+}
+
+# everything that has a direct link to david bowie
+CONSTRUCT {
+  ?subj ?pred wd:Q5383.
+ }
+WHERE{
+  ?subj ?pred wd:Q5383.
+ }
+#->2354 results 
+
+# same but in the other direction
+CONSTRUCT {
+  wd:Q5383 ?pred ?obj.
+ }
+WHERE{
+  wd:Q5383 ?pred ?obj.
+ }
+ #->1254 results 
+
+
+#list of gay people
+SELECT DISTINCT ?item ?itemLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?item WHERE {
+      ?item p:P91 ?statement0.
+      ?statement0 (ps:P91/(wdt:P279*)) wd:Q592.
+    }
+  }
+}
+#-> 475 results
+
+# graph with gay men, distance one 
+CONSTRUCT {
+   ?gayman ?pred ?object.
+} WHERE {
+     ?gayman ?pred ?object.
+      ?gayman p:P91 ?statement0.
+      ?statement0 (ps:P91/(wdt:P279*)) wd:Q592.
+}
+#-> 58443 results
+
+# list of queer person 
+SELECT DISTINCT ?person ?personLabel ?sexualorientation
+    WHERE {
+    {
+        ?person wdt:P31 wd:Q5 . #?personId is a human
+
+        { 
+            ?person wdt:P21 ?sexorgender. #?person has ?sexorgender
+            #?sexorgender is not male, female, cisgender male, cigender female, or cisgender person
+            FILTER(?sexorgender NOT IN (wd:Q6581097, wd:Q6581072, wd:Q15145778, wd:Q15145779, wd:Q1093205)). 
+        } UNION {
+            ?person wdt:P91 ?sexualorientation . #?person has ?sexualorientation
+            FILTER(?sexualorientation != wd:Q1035954). #?sexualorientation is not heterosexual
+        }
+    }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+
+    }
+
+
+
+
+# graph of queer persons distance 1 
+CONSTRUCT {
+  ?person ?pred ?obj.
+  }
+    WHERE {
+    {
+        ?person wdt:P31 wd:Q5 . #?personId is a human
+         ?person ?pred ?obj. 
+        { 
+            ?person wdt:P21 ?sexorgender. #?person has ?sexorgender
+            #?sexorgender is not male, female, cisgender male, cigender female, or cisgender person
+            FILTER(?sexorgender NOT IN (wd:Q6581097, wd:Q6581072, wd:Q15145778, wd:Q15145779, wd:Q1093205)). 
+        } UNION {
+            ?person wdt:P91 ?sexualorientation . #?person has ?sexualorientation
+            FILTER(?sexualorientation != wd:Q1035954). #?sexualorientation is not heterosexual
+        }
+    }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+
+    }
+
+    -> result : a graph very descriptive of the people, the only thing we can get are similarities between the people. 
+
+# same thing with labels 
+SELECT DISTINCT ?person ?personLabel ?pred ?predLabel ?obj ?objLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?person ?pred ?obj WHERE {
+      ?person ?pred ?obj.
+        ?person wdt:P31 wd:Q5 . #?personId is a human
+
+        { 
+            ?person wdt:P21 ?sexorgender. #?person has ?sexorgender
+            #?sexorgender is not male, female, cisgender male, cigender female, or cisgender person
+            FILTER(?sexorgender NOT IN (wd:Q6581097, wd:Q6581072, wd:Q15145778, wd:Q15145779, wd:Q1093205)). 
+        } UNION {
+            ?person wdt:P91 ?sexualorientation . #?person has ?sexualorientation
+            FILTER(?sexualorientation != wd:Q1035954). #?sexualorientation is not heterosexual
+        }
+    }
+    LIMIT 100
+  }
+}
+
+## graph avec limit 250
+
+CONSTRUCT {
+  ?person ?pred ?obj.
+}  WHERE {
+    
+        ?person wdt:P31 wd:Q5 . #?personId is a human
+         ?person ?pred ?obj. 
+        { 
+            ?person wdt:P21 ?sexorgender. #?person has ?sexorgender
+            #?sexorgender is not male, female, cisgender male, cigender female, or cisgender person
+            FILTER(?sexorgender NOT IN (wd:Q6581097, wd:Q6581072, wd:Q15145778, wd:Q15145779, wd:Q1093205)). 
+        } UNION {
+            ?person wdt:P91 ?sexualorientation . #?person has ?sexualorientation
+            FILTER(?sexualorientation != wd:Q1035954). #?sexualorientation is not heterosexual
+        }
+}
+LIMIT 250
+
+
+##
+
+
+SELECT DISTINCT ?subj ?subjLabel ?pred ?predLabel ?person ?personLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?person ?pred ?subj WHERE {
+      ?subj ?pred ?person.
+        ?person wdt:P31 wd:Q5 . #?personId is a human
+
+        { 
+            ?person wdt:P21 ?sexorgender. #?person has ?sexorgender
+            #?sexorgender is not male, female, cisgender male, cigender female, or cisgender person
+            FILTER(?sexorgender NOT IN (wd:Q6581097, wd:Q6581072, wd:Q15145778, wd:Q15145779, wd:Q1093205)). 
+        } UNION {
+            ?person wdt:P91 ?sexualorientation . #?person has ?sexualorientation
+            FILTER(?sexualorientation != wd:Q1035954). #?sexualorientation is not heterosexual
+        }
+    }
+    LIMIT 100000
+  }
+}
+
+
+#list d'élements qui renvoient vers les bars gay 
+SELECT DISTINCT ?item ?itemLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?item WHERE {
+      ?item ?pred ?bar.
+      ?bar wdt:P31 wd:Q105321449.
+    }
+  }
+}
+
+
+
+# les predicats qui partent des bars gay 
+
+# les predicats qui peuvent relier des humains  
+SELECT DISTINCT ?item ?itemLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?item WHERE {
+      ?human1 ?item ?statement0.
+      ?statement0 ?pred ?human2.
+      ?human1 p:P31 ?statement01.
+      ?statement01 (ps:P31/(wdt:P279*)) wd:Q5.
+      ?human2 p:P31 ?statement02.
+      ?statement02 (ps:P31/(wdt:P279*)) wd:Q5.
+    }
+  }
+}
+#-> pas de réponse (timeout) il me semble pcq meme avec la limite à 1 il y a timeout
+#bon alors c'est pas tout à fait le cas car on peut trouver le sibling de johnny depp
+# requete en question
+SELECT DISTINCT ?item ?itemLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?item WHERE {
+      ?item p:P3373 ?statement0.
+      ?statement0 (ps:P3373) wd:Q37175.
+    }
+    LIMIT 100
+  }
+}
+
+# get the instance of zeus
+SELECT DISTINCT ?item ?itemLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?item WHERE {
+      wd:Q34201 p:P31 ?statement0.
+      ?statement0 (ps:P31/(wdt:P279*)) ?item.
+    }
+    LIMIT 100
+  }
+}
+
+# check if Zeus is a human (long time)
+ASK {
+      wd:Q34201 p:P31 ?statement0.
+      ?statement0 (ps:P31/(wdt:P279*)) wd:Q215627.
+ }
+
+
+# get all the type of the object at distance 1
+SELECT DISTINCT ?item ?itemLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?item WHERE {
+      ?obj p:P31 ?statement0.
+      ?statement0 (ps:P31/(wdt:P279*)) ?item.
+      ?person ?pred ?obj. 
+        { 
+            ?person wdt:P21 ?sexorgender. #?person has ?sexorgender
+            #?sexorgender is not male, female, cisgender male, cigender female, or cisgender person
+            FILTER(?sexorgender NOT IN (wd:Q6581097, wd:Q6581072, wd:Q15145778, wd:Q15145779, wd:Q1093205)). 
+        } UNION {
+            ?person wdt:P91 ?sexualorientation . #?person has ?sexualorientation
+            FILTER(?sexualorientation != wd:Q1035954). #?sexualorientation is not heterosexual
+        }
+
+    }
+  }
+}
+-> 9130 results
+
+-> conclusion : person, places (geographic entity / geographic location), strings can be identify as such (string) 
+	event, organisation (group of humans), other 
+
+
