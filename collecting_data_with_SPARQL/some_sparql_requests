@@ -284,3 +284,10 @@ SELECT DISTINCT ?item ?itemLabel WHERE {
 	event, organisation (group of humans), other 
 
 
+# get the name of an element out of the iri 
+SElECT ?item ?itemLabel  WHERE{
+  BIND(<http://www.wikidata.org/entity/Q68822> as ?item).
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+  }
+  
+
