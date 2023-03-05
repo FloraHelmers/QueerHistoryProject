@@ -2,16 +2,30 @@ import networkx as nx
 
 import rdflib
 from rdflib import Graph
-from rdflib.extras.external_graph_libs import rdflib_to_networkx_multidigraph
 
-from utils import get_list_from_sparql,create_merged_stars_graph
+from utils import star_merging_pipeline
 
-def explore_selected(prop,n_incr,endpoint):
+wikidata_db_ids=["Q328","Q169514","Q8447","Q48183","Q8449","Q206855","Q54919","Q19938912","Q14005","Q648625","Q23833686","Q36578","Q13550863","Q30049687","Q15706812"
+                 "Q29861311","Q237227","Q63056","Q504063"] 
+#wikipedias,VIAF,BnF,MusicBrainz,Google KG,German National Library,Gemeinsame Normdatei,Czech National Database,BlackPast.org,filmportal.de,SNAC,Brockhaus Enzyklopädie,Find a Grave
+#Discogs
+
+trivial_ids=["Q199","Q1985727","Q5","Q6581097","Q1860","Q11573","Q11570","Q6581072"]
+#1,calendar,human,male,English?,metre,kilogram,female
+
+timeout_ids=["Q30","Q183"]
+#USA,Germany
+#should add a way to recover the property linking people to these entities (less searching for SPARQL)
+
+def explore_selected(properties,n_incr,policy):
+    prop_concat=""
+    for p in properties:
+      prop_concat+="?person ?property wd:"+p+".\n"
     query='''SELECT DISTINCT ?person ?personLabel 
     WHERE {
     {
-        ?person wdt:P31 wd:Q5 . #?personId is a human
-        ?person ?property wd:'''+prop.split('/')[-1]+'''.
+        ?person wdt:P31 wd:Q5 . #?personId is a human 
+        '''+prop_concat+'''
     
         { 
             ?person wdt:P21 ?sexorgender. #?person has ?sexorgender
@@ -25,19 +39,36 @@ def explore_selected(prop,n_incr,endpoint):
     SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
 
     } LIMIT '''
+    #print(query)
+    return star_merging_pipeline(n_incr, query, policy)
 
-    data=get_list_from_sparql(endpoint, query, size=n_incr)
-    return create_merged_stars_graph(data)
+def create_list_prop(list_prop,explored_prop,k_prop):
+    to_expl=[]
+    k=0
+    i=0
+    while k<k_prop:
+      if list_prop[i] not in explored_prop:
+        to_expl.append(list_prop[i])
+        k+=1
+      i+=1
+    print(i)
+    return to_expl
 
-def crawler_process(G, n_iter, alpha, pagerank_iter, k_prop, n_incr, endpoint):
+def crawler_process(G, n_iter, k_prop, n_incr, policy, n_max=None, people_list=[], alpha=0.85, pagerank_iter=100):
+    explored_prop=trivial_ids+wikidata_db_ids+timeout_ids
     for i in range(n_iter):
         pr = nx.pagerank(G, alpha=alpha, max_iter=pagerank_iter)
 
-        sorted_nodes = {key:val for key,val in sorted(pr.items(),key=lambda ele:ele[1],reverse=True) if "entity/" in key}
+        sorted_nodes = [key.split('/')[-1] for key,val in sorted(pr.items(),key=lambda ele:ele[1],reverse=True) if "entity/" in key]
 
-        i=0
-        while i<k_prop:
-            #should add an if to check if prop one of the type of useful properties (not number or wikipedia etc)
-            prop_graph=explore_selected(sorted_nodes[i],n_incr,endpoint)
-            G=nx.compose(G,prop_graph)
-            i+=1
+        to_expl=create_list_prop(sorted_nodes,explored_prop,k_prop)
+        print(to_expl)
+        #should add an if to check if prop one of the type of useful properties (not number or wikipedia etc)
+        prop_graph,new_list=explore_selected(to_expl,n_incr,policy)
+        explored_prop+=to_expl
+        people_list=list(set(people_list + new_list))
+        G=nx.compose(G,prop_graph)
+        if n_max!=None and len(people_list)>n_max:
+            print(str(n_max)+" peoples reached")
+            return G, people_list
+    return G, people_list

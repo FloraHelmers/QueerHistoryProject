@@ -123,11 +123,11 @@ def prune_literals(G):
         G.remove_node(node)
 
 
-def star_merging_pipeline(n, prune_policy):
-    l=get_list_from_sparql(Endpoint.wikidata, query_queer_world, size=n)
+def star_merging_pipeline(n, query, prune_policy):
+    l=get_list_from_sparql(Endpoint.wikidata, query, size=n)
     G=create_merged_stars_graph(l)
     if prune_policy['remove_deadend']:
         prune_dead_end(G)
     if prune_policy['remove_isolated']:
         prune_isolated_nodes(G)
-    return G
+    return G,l
