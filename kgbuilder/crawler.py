@@ -29,12 +29,11 @@ def explore_selected(prop,n_incr,endpoint):
     data=get_list_from_sparql(endpoint, query, size=n_incr)
     return create_merged_stars_graph(data)
 
-def crawler_process(G, n_iter, alpha, pagerank_iter, k_prop, n_incr, endpoint):
+def crawler_process(G, n_iter : int, alpha : float, pagerank_iter : int, k_prop, n_incr, endpoint):
     for i in range(n_iter):
         pr = nx.pagerank(G, alpha=alpha, max_iter=pagerank_iter)
 
         sorted_nodes = {key:val for key,val in sorted(pr.items(),key=lambda ele:ele[1],reverse=True) if "entity/" in key}
-
         i=0
         while i<k_prop:
             #should add an if to check if prop one of the type of useful properties (not number or wikipedia etc)

@@ -105,3 +105,4 @@ def create_plot_graph_force_directed_bundled(G):
     force_graph = graphplot(forcedirected, hammer_bundle(forcedirected,edges), "Force-directed, bundled") 
 
     return force_graph
+

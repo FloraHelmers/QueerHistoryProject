@@ -131,3 +131,6 @@ def star_merging_pipeline(n, prune_policy):
     if prune_policy['remove_isolated']:
         prune_isolated_nodes(G)
     return G
+
+def create_nodes_DataFrame(nodes, G, rdf_type=True, labels=True, entity_type=True):
+    return 
