@@ -143,6 +143,3 @@ def zoomed_in_graph(df_nodes, G):
           with_labels=False)
   nx.draw_networkx_labels(subG, font_color='g', pos= pos, labels=labels)
   plt.show()
-
-
-

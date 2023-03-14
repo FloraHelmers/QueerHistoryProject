@@ -64,6 +64,18 @@ def graphplot(nodes, edges, name="", canvas=None, cat=None):
     # stack the edges plot and the nodes plot on top of each other and return
     return tf.stack(ep, np, how="over", name=name)
 
+def layoutplot(nodes, name="", canvas=None, cat=None):
+    # if canvas is None, create a new canvas with the x and y range of the nodes
+    if canvas is None:
+        xr = nodes.x.min(), nodes.x.max()
+        yr = nodes.y.min(), nodes.y.max()
+        canvas = ds.Canvas(x_range=xr, y_range=yr, **cvsopts)
+
+    # create a plot for the nodes using the nodesplot function, and append the name " nodes" to the name variable
+    nodeplot = nodesplot(nodes, name + " nodes", canvas, cat)
+
+    return nodeplot
+
 def create_plot_graph_force_directed(G):
     # convert the graph labels to integers
     g=convert_to_int_labels(nx.DiGraph(G))
@@ -105,4 +117,3 @@ def create_plot_graph_force_directed_bundled(G):
     force_graph = graphplot(forcedirected, hammer_bundle(forcedirected,edges), "Force-directed, bundled") 
 
     return force_graph
-

@@ -1,3 +1,8 @@
+class Endpoint:
+    wikidata = "https://query.wikidata.org/sparql"
+    dbpedia = "http://dbpedia.org/sparql"
+    viaf = "http://www.viaf.org/viaf"
+
 query_queer_world='''SELECT DISTINCT ?person ?personLabel 
     WHERE {
     {
