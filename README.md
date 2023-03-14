@@ -1,33 +1,28 @@
 # Strategies for creating knowledge graphs to depict a multi-perspective Queer communities representation
 by Louann Coste, Flora Helmers, Léo Le Nestour, Mahsa Niazi
-supervised by Genoveva Vargas-Solar
 
-## The project
-The process is described in the article. 
+## Project Overview
+This project aims to create a knowledge graph of the LGBTQ+ artistic and political scene. The process and details are explained in the accompanying article.
 
-## the directory kgbuilder
-to use like a python library
-The notebook ... explains how to use it. 
+## KGBuilder Directory
+The KGBuilder directory can be used as a Python library, and the accompanying notebook (present both inside and outside the directory) provides a step-by-step guide on how to use it.
 
-## Collecting data with SPARQL requests
-the file `some_sparql_requests` proposes several sparql requests.
-The .csv files that come along are the results of some of these sparql requests.  
+## Data Collection with SPARQL Requests
+The "some_sparql_requests" file contains several SPARQL requests to collect data. The results of some of these requests are stored in CSV files.
 
-## writing ontology
-Finally not exploited as a part of the project. The ontology created offers a view of the LGBTQ+ artistic and politic scene. Its serialization format in turtle is easily readable. 
-The ontology can be visualize by using Protégé. 
+## Ontology Writing
+An ontology was created to offer a view of the LGBTQ+ artistic and political scene, but it was not exploited as part of the project. The ontology is serialized in turtle format, which is easily readable. It can be visualized using Protégé.
 
-## In the directory visualisation 
-several visualisation are gathered
+## Visualization Directory
+The Visualization directory contains several visualizations of the knowledge graph.
 
 ## Bibliography
-the sources we read to get more knowledge about knowledge graphs 
+The Bibliography section lists the sources we consulted to gain more knowledge about knowledge graphs.
 
+## Additional Notebooks
+Additional notebooks are provided, but they are raw and not necessary to read.
 
-## more notebooks
-propose some of the raw notebooks we have been working with (no need to read it)
-
-# Technical reminders if you want to run the library in Colab
+## Technical details if you want to run the library in Colab
 To run kgbuilder in google colab : 
 1. upload kgbuiler in the google drive
 2. run : ```python
