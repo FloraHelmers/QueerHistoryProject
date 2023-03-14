@@ -1,6 +1,9 @@
 import requests
 import json
 import pandas as pd
+import matplotlib as mpl
+from matplotlib import pyplot as plt
+import networkx as nx
 
 def is_wikidata(iri):
     caract = "http://www.wikidata.org/"
@@ -117,16 +120,29 @@ def create_nodes_DataFrame(nodes, G, degreeG=True, degreeSubG=True, rdf_type=Tru
     return df 
 
 
-def select_interesting_nodes(preselected_nodes_df, G, nbNodesToKeep):
-   # select a certain number of nodes
+def create_subgraph(df_nodes, G, to_keep="to_keep"):
+   return G.subgraph(df_nodes.loc[df_nodes[to_keep == True]])
 
-   #try to keep a connected subgraph
-   subG = G.subgraph(preselected_nodes_df["nodes"])
-   if not "degreesSub" in preselected_nodes_df.columns:
-      preselected_nodes_df["degreesSub"] = preselected_nodes_df["nodes"].apply(lambda x: subG.degree(x))
+def zoomed_in_graph(df_nodes, G):
+  labels = dict({row["node"] : row["itemLabel"] for index, row in df_nodes.iterrows()})
+  color_lookup = dict({row["node"] : row["data_type"] for index, row in df_nodes.iterrows()})
+  subG = create_subgraph(df_nodes, G)
+  pos = nx.spring_layout(subG)
+  low, *_, high = sorted(color_lookup.values())
+  norm = mpl.colors.Normalize(vmin=low, vmax=high, clip=True)
+  mapper = mpl.cm.ScalarMappable(norm=norm, cmap=mpl.cm.coolwarm)
+
+  mpl.rcParams['figure.figsize'] = 12, 7
+
+  nx.draw(subG, 
+          nodelist=color_lookup,
+          node_size=1000,
+          pos = pos,
+          node_color=[mapper.to_rgba(i) 
+                      for i in color_lookup.values()], 
+          with_labels=False)
+  nx.draw_networkx_labels(subG, font_color='g', pos= pos, labels=labels)
+  plt.show()
 
 
-   #try to keep diversity in the types of data 
-   
-   # try to show 
-   return 
+

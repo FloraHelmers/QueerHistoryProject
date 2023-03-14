@@ -1,25 +1,27 @@
 # Strategies for creating knowledge graphs to depict a multi-perspective Queer communities representation
 by Louann Coste, Flora Helmers, Léo Le Nestour, Mahsa Niazi
+supervised by Genoveva Vargas-Solar
 
-# The project
+## The project
 The process is described in the article. 
 
-# the directory kgbuilder
+## the directory kgbuilder
 to use like a python library
 The notebook ... explains how to use it. 
 
-# Collecting data with SPARQL requests
+## Collecting data with SPARQL requests
 the file `some_sparql_requests` proposes several sparql requests.
 The .csv files that come along are the results of some of these sparql requests.  
 
-# writing ontology
+## writing ontology
 Finally not exploited as a part of the project. The ontology created offers a view of the LGBTQ+ artistic and politic scene. Its serialization format in turtle is easily readable. 
 The ontology can be visualize by using Protégé. 
 
-# In the directory visualisation 
+## In the directory visualisation 
 several visualisation are gathered
 
-
+## Bibliography
+the sources we read to get more knowledge about knowledge graphs 
 
 # Technical reminders
 To run kgbuilder in google colab : 
