@@ -23,6 +23,10 @@ several visualisation are gathered
 ## Bibliography
 the sources we read to get more knowledge about knowledge graphs 
 
+
+## more notebooks
+propose some of the raw notebooks we have been working with (no need to read it)
+
 # Technical reminders
 To run kgbuilder in google colab : 
 1. upload kgbuiler in the google drive
