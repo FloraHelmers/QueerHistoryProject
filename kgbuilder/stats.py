@@ -10,7 +10,10 @@ def graph_summary(G):
     
     # Calculate and print graph metrics
     print("Density: ", nx.density(G))
-    print("Diameter: ", nx.diameter(G))
+    try:
+        print("Diameter: ", nx.diameter(G))
+    except:
+        pass
     try:
         print("Average shortest path length: ", nx.average_shortest_path_length(G))
     except:
