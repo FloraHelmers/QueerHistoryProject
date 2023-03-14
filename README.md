@@ -27,10 +27,12 @@ the sources we read to get more knowledge about knowledge graphs
 ## more notebooks
 propose some of the raw notebooks we have been working with (no need to read it)
 
-# Technical reminders
+# Technical reminders if you want to run the library in Colab
 To run kgbuilder in google colab : 
 1. upload kgbuiler in the google drive
 2. run : ```python
     from google.colab import drive
     drive.mount("/content/gdrive")
     sys.path.append('/content/gdrive/MyDrive/{the access path to kgbuilder}/kgbuilder')```
+
+Otherwise, it is sufficient to have the path of the library in sys paths.
